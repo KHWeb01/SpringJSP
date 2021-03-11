@@ -19,6 +19,6 @@
 		response.addCookie(cookie);
 	%>
 	
-	<hr><a href="AddTimeCookie.jsp">현재 접속 시각을 Cookie로 추가</a>
+	<hr><a href="cookieTime">현재 접속 시각을 Cookie로 추가</a>
 </body>
 </html>

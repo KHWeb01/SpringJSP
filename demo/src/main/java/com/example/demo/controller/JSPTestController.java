@@ -17,4 +17,18 @@ public class JSPTestController {
 		
 		return "test";
 	}
+	
+	@GetMapping("/cookie")
+	public String getCookie() {
+		log.info("getCookie()");
+		
+		return "AddCookie";
+	}
+	
+	@GetMapping("/cookieTime")
+	public String getCookieTime() {
+		log.info("getCookieTime()");
+		
+		return "AddTimeCookie";
+	}
 }
