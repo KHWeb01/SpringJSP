@@ -31,4 +31,11 @@ public class JSPTestController {
 		
 		return "AddTimeCookie";
 	}
+	
+	@GetMapping("/cookieLookUp")
+	public String getCookieLookUp() {
+		log.info("getCookieLookUp()");
+		
+		return "GetCookies";
+	}
 }
