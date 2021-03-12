@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +18,9 @@ public class EmployeeRepository {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	
-	private String INSERT_EMP = "insert into s_emp(name, start_date, "
-			+ "title, dept_name, salary) values(?, ?, ?, ?, ?)";
+	private String INSERT_EMP = "insert into s_emp(id, name, start_date, "
+			+ "title, dept_name, salary) values "
+			+ "(init_seq.nextval, ?, ?, ?, ?, ?)";
 	
 	private String LIST_EMP = "select id, name, start_date, title, "
 			+ "dept_name, salary from s_emp order by name";
@@ -99,6 +102,51 @@ public class EmployeeRepository {
 			conn = getConnection();
 			
 			System.out.println("연결 성공!");
+			
+			stmt = conn.prepareStatement(INSERT_EMP);
+			
+			stmt.setString(1,  entity.getName());
+			stmt.setTimestamp(2, entity.getStartDate());
+			stmt.setString(3, entity.getTitle());
+			stmt.setString(4, entity.getDeptName());
+			stmt.setDouble(5, entity.getSalary());
+			
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, conn);
 		}
+	}
+	
+	public List<Employee> getEmployeeList () {
+		System.out.println("JDBC 기반 리스팅");
+		
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		try {
+			conn = getConnection ();
+			stmt = conn.prepareStatement(LIST_EMP);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Employee emp = new Employee();
+				
+				emp.setId(rs.getLong("id"));
+				emp.setName(rs.getString("name"));
+				emp.setStartDate(rs.getTimestamp("start_date"));
+				emp.setTitle(rs.getString("title"));
+				emp.setDeptName(rs.getString("dept_name"));
+				emp.setSalary(rs.getDouble("salary"));
+				
+				employeeList.add(emp);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, stmt, conn);
+		}
+		
+		return employeeList;
 	}
 }
