@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Session Login</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
 			<tr bgcolor="yellow">
 				<td align=right><font size=2> ID : </font></td>
 				<td><input type="text" name="id" size=10> <input
-					type="checkbox" name="box"> ID ÀúÀå</td>
+					type="checkbox" name="box">ID ì €ìž¥</td>
 			</tr>
 			<tr bgcolor="yellow">
 				<td align=right><font size=2> PW : </font></td>
@@ -19,7 +19,7 @@
 			</tr>
 			<tr bgcolor="yellow">
 				<td colspan=2 align=center><input type="submit" value="Login">
-					<input type="reset" value="´Ù½Ã ÀÛ¼º"></td>
+					<input type="reset" value="ë‹¤ì‹œ ìž‘ì„±"></td>
 			</tr>
 		</table>
 	</form>

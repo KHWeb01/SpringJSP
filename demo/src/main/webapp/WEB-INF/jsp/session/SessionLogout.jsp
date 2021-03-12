@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	session.removeAttribute("id");
 %>
-<h3>Logout µÇ¼Ì½À´Ï´Ù.</h3>
-<a href="/login">Login Page·Î ÀÌµ¿</a>
+<h3>Logout ë˜ì…¨ìŠµë‹ˆë‹¤.</h3>
+<a href="/login">Login Pageë¡œ ì´ë™</a>

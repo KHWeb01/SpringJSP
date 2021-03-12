@@ -1,4 +1,4 @@
-create table board(
+create table jsp_board(
 	no number not null primary key,
 	name varchar2(12) not null,
 	passwd varchar2(12) not null,
