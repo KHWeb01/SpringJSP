@@ -6,6 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#getBtn").on("click", function () {
+			var boardNo = $("#boardNo")
+			var boardNoVal = boardNo.val()
+			
+			$.get("/boards/" + boardNoVal, function (data) {
+				alert(JSON.stringify(data))
+			})
+		})
+	})
+</script>
+
 <body>
 	<h1>Ajax Home</h1>
 	
