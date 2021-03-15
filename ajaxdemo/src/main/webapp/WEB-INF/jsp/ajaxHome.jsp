@@ -22,25 +22,6 @@
 				alert(JSON.stringify(data))
 			})
 		})
-	})
-	
-	$(document).ready(function () {
-		$("#getJsonBtn").on("click", function () {
-			var boardNo = $("#boardNo")
-			var boardNoVal = boardNo.val()
-			
-			$.ajax({
-				type: "get",
-				url: "/boards/" + boardNoVal,
-				// 나는 json만 처리가능하니까 딴거 주지마
-				headers: {
-					"Accept": "application/json"
-				},
-				success: function (result) {
-					alert(JSON.stringify(result))
-				}
-			})
-		})
 
 		$("#getJsonBtn").on("click", function () {
 			var boardNo = $("#boardNo")
