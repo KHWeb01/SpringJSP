@@ -1,8 +1,14 @@
 package com.example.demo.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +42,32 @@ public class PictureController {
 		ResponseEntity<String> entity = 
 				new ResponseEntity<String>(
 						"Upload 성공! " + originalFilename, HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	// ResponseEntity 적기 귀찮을때 사용할 수 있음
+	// @ResponseBody
+	@GetMapping("/loadPicture")
+	public ResponseEntity<byte[]> getLoadPicture () throws Exception {
+		ResponseEntity<byte[]> entity = null;
+		InputStream in = null;
+		
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			
+			in = new FileInputStream("C:\\CQR.jpg");
+			
+			headers.setContentType(MediaType.IMAGE_JPEG);
+			
+			entity = new ResponseEntity<byte[]>(
+					IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
 		
 		return entity;
 	}
