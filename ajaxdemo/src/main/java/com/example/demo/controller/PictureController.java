@@ -28,6 +28,7 @@ public class PictureController {
 	@PostMapping("/postUploadAjax")
 	public ResponseEntity<String> 
 	postUploadAjax(MultipartFile file) throws Exception {
+
 		String originalFilename = file.getOriginalFilename();
 		
 		log.info("originalName: " + originalFilename);

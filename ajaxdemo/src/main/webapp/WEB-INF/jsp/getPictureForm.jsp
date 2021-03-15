@@ -16,19 +16,25 @@
 			var file = files[0]
 			var formData = new FormData()
 			
-			formData.append("file", file)
+			console.log('file: ' + file)
 			
-			$.ajax({
-				type: "post",
-				url: "/postUploadAjax",
-				data: formData,
-				dataType: "text",
-				processData: false,
-				contentType: false,
-				success: function (data) {
-					alert(data)
-				}
-			})
+			if (file === undefined) {
+				alert('파일을 입력해주세요.')
+			} else {
+				formData.append("file", file)
+				
+				$.ajax({
+					type: "post",
+					url: "/postUploadAjax",
+					data: formData,
+					dataType: "text",
+					processData: false,
+					contentType: false,
+					success: function (data) {
+						alert(data)
+					}
+				})
+			}
 		})
 		
 	})
