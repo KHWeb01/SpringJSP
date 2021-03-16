@@ -54,4 +54,32 @@ public class BoardRepository {
 		
 		return results;
 	}
+
+	public Board read(Integer boardNo) throws Exception {
+		List<Board> results = jdbcTemplate.query(
+				"select board_no, title, content, writer, reg_date "
+				+ "from jspboard where board_no = ?",
+				
+				new RowMapper<Board>() {
+
+					@Override
+					public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+						// TODO Auto-generated method stub
+						Board board = new Board();
+						
+						board.setBoardNo(rs.getInt("board_no"));
+						board.setTitle(rs.getString("title"));
+						board.setContent(rs.getString("content"));
+						board.setWriter(rs.getString("writer"));
+						
+						Timestamp timestamp = rs.getTimestamp("reg_date");
+						board.setRegDate(timestamp.toLocalDateTime());
+						
+						return board;
+					}
+				}, boardNo
+			);
+			
+			return results.isEmpty() ? null : results.get(0);
+	}
 }

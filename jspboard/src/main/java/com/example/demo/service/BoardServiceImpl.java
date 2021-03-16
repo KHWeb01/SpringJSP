@@ -25,5 +25,12 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return repository.list();
 	}
+
+	@Override
+	public Board read(Integer boardNo) throws Exception {
+		// TODO Auto-generated method stub
+		return repository.read(boardNo);
+	}
+	
 	
 }

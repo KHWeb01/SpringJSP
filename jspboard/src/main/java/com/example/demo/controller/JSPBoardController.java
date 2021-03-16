@@ -44,4 +44,11 @@ public class JSPBoardController {
 		
 		return "board/success";
 	}
+	
+	@GetMapping("/read")
+	public void read(int boardNo, Model model) throws Exception {
+		log.info("read()");
+		
+		model.addAttribute(service.read(boardNo));
+	}
 }
