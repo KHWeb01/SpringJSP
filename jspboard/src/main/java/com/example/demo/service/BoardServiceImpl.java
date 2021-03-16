@@ -31,6 +31,16 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return repository.read(boardNo);
 	}
-	
-	
+
+	@Override
+	public void modify(Board board) throws Exception {
+		// TODO Auto-generated method stub
+		repository.update(board);
+	}
+
+	@Override
+	public void remove(Integer boardNo) throws Exception {
+		// TODO Auto-generated method stub
+		repository.delete(boardNo);
+	}
 }

@@ -51,4 +51,33 @@ public class JSPBoardController {
 		
 		model.addAttribute(service.read(boardNo));
 	}
+	
+	@GetMapping("/modify")
+	public void getModify(int boardNo, Model model) throws Exception {
+		log.info("getModify()");
+		
+		model.addAttribute(service.read(boardNo));
+	}
+	
+	@PostMapping("/modify")
+	public String postModify(Board board, Model model) throws Exception {
+		log.info("postModify()");
+		
+		service.modify(board);
+		
+		model.addAttribute("msg", "수정이 성공적으로 완료되었습니다.");
+		
+		return "board/success";
+	}
+	
+	@PostMapping("/remove")
+	public String remove(int boardNo, Model model) throws Exception {
+		log.info("remove()");
+		
+		service.remove(boardNo);
+		
+		model.addAttribute("msg", "삭제가 성공적으로 완료되었습니다.");
+		
+		return "board/success";
+	}
 }

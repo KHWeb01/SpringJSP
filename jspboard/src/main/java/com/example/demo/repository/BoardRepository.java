@@ -82,4 +82,20 @@ public class BoardRepository {
 			
 			return results.isEmpty() ? null : results.get(0);
 	}
+
+	public void update(Board board) {
+		// TODO Auto-generated method stub
+		String query = "update jspboard set title = ?, content = ? "
+					+ "where board_no = ?";
+		
+		jdbcTemplate.update(query, board.getTitle(), 
+				board.getContent(), board.getBoardNo());
+	}
+
+	public void delete(Integer boardNo) {
+		// TODO Auto-generated method stub
+		String query = "delete from jspboard where board_no = ?";
+		
+		jdbcTemplate.update(query, boardNo);
+	}
 }

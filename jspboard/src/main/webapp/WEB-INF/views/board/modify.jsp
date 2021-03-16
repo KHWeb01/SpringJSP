@@ -16,33 +16,27 @@
 		var formObj = $("#board")
 		
 		$("#btnModify").on("click", function () {
-			var boardNo = $("#boardNo")
-			var boardNoVal = boardNo.val();
-			
-			self.location = "/board/modify?boardNo=" + boardNoVal
+			formObj.attr("action", "/board/modify")
+			formObj.attr("method", "post")
+			formObj.submit();
 		})
 		
 		$("#btnList").on("click", function () {
 			self.location = "/board/list"
 		})
-		
-		$("#btnRemove").on("click", function () {
-			formObj.attr("action", "/board/remove")
-			formObj.submit();
-		})
 	})
 </script>
 
 <body>
-	<h2>게시글 읽기</h2>
+	<h2>게시물 수정</h2>
 	
-	<form:form modelAttribute="board">
+	<form:form modelAttribute="board" action="modify">
 		<form:hidden path="boardNo"/>
 		
 		<table>
 			<tr>
 				<td>제목</td>
-				<td><form:input path="title" readonly="true"/></td>
+				<td><form:input path="title"/></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -50,15 +44,14 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><form:input path="content" readonly="true"/></td>
+				<td><form:input path="content"/></td>
 			</tr>
 		</table>
 	</form:form>
 	
 	<div>
-		<button type="submit" id="btnModify">수정</button>
+		<button type="submit" id="btnModify">수정 완료</button>
 		<button type="submit" id="btnList">게시글 보기</button>
-		<button type="submit" id="btnRemove">게시글 삭제</button>
 	</div>
 </body>
 </html>
