@@ -21,10 +21,10 @@ th.cl {
 	<hr>
 	<center>
 		<%@ page
-			import="java.util.Vector, com.example.demo.entity.JSPBoard, java.text.SimpleDateFormat"%>
+			import="java.util.Vector,com.example.demo.entity.Board,java.text.SimpleDateFormat"%>
 		<jsp:useBean id="brddb" class="com.example.demo.repository.JSPBoardDBCP" scope="page" />
 		<%
-			Vector<JSPBoard> list = brddb.getBoardList();
+			Vector<Board> list = brddb.getBoardList();
 			int counter = list.size();
 			int row = 0;
 
@@ -40,10 +40,10 @@ th.cl {
 			</tr>
 			<%
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					for (JSPBoard brd : list) {
-						String color = "papayawhip";
-						if (++row % 2 == 0)
-							color = "white";
+						for (Board brd : list) {
+							String color = "papayawhip";
+							if (++row % 2 == 0)
+								color = "white";
 			%>
 			<tr bgcolor="<%=color%>"
 				onmouseover="this.style.backgroundColor='SkyBlue'"
