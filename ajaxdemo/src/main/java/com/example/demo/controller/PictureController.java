@@ -56,6 +56,7 @@ public class PictureController {
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			
+			// pwd -> 절대 경로 /
 			in = new FileInputStream("C:\\CQR.jpg");
 			
 			headers.setContentType(MediaType.IMAGE_JPEG);
