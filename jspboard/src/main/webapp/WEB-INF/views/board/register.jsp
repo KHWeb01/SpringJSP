@@ -11,6 +11,22 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
+<script>
+	$(document).ready(function () {
+		var formObj = $("#board")
+		
+		$("#btnRegister").on("click", function () {
+			formObj.attr("action", "/board/register")
+			formObj.attr("method", "post")
+			formObj.submit();
+		})
+		
+		$("#btnList").on("click", function () {
+			self.location = "/board/list"
+		})
+	})
+</script>
+
 <body>
 	<h2>게시글 쓰기</h2>
 	
