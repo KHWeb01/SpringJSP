@@ -23,7 +23,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> list() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.list();
 	}
 	
 }
