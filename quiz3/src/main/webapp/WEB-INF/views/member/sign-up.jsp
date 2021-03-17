@@ -13,7 +13,7 @@
 
 <script>
 	$(document).ready(function () {
-		var formObj = $("#board")
+		var formObj = $("#member")
 		
 		$("#btnRegister").on("click", function () {
 			formObj.attr("action", "/member/sign-up")
