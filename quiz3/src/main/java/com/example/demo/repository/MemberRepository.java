@@ -19,13 +19,13 @@ public class MemberRepository {
 	
 	public void signUp(Member member) throws Exception {
 		log.info("signUp()");
-		/*
-		String query = "insert into jspboard (board_no, title, content, writer) " +
-						"values (jspboard_seq.nextval, ?, ?, ?)";
+
+		String query = "insert into jspmember (member_no, id, "
+				+ "password, email, phone_num) " 
+				+ "values (jspmember_seq.nextval, ?, ?, ?, ?)";
 		
-		jdbcTemplate.update(query, board.getTitle(), 
-				board.getContent(), board.getWriter());
-				*/
+		jdbcTemplate.update(query, member.getId(), member.getPassword(), 
+				member.getEmail(), member.getPhoneNumber());
 	}
 
 	public void update(Member board) {

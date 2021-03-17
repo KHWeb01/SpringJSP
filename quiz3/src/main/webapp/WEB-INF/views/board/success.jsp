@@ -9,6 +9,8 @@
 <body>
 	<div>
 		<h2>${msg}</h2>
+		<!-- 필요하다면 기존의 board controller
+		         와 함께 붙여서 상호 연동도 가능함 -->
 		<a href="/board/list">게시글 보기</a>
 	</div>
 </body>
