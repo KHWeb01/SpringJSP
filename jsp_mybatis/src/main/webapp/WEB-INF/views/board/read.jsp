@@ -13,7 +13,7 @@
 
 <script>
 	$(document).ready(function () {
-		var formObj = $("#board")
+		var formObj = $("#myBatisBoard")
 		
 		$("#btnModify").on("click", function () {
 			var boardNo = $("#boardNo")
@@ -36,7 +36,7 @@
 <body>
 	<h2>게시글 읽기</h2>
 	
-	<form:form modelAttribute="board">
+	<form:form modelAttribute="myBatisBoard">
 		<form:hidden path="boardNo"/>
 		
 		<table>

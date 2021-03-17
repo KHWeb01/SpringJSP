@@ -13,7 +13,7 @@
 
 <script>
 	$(document).ready(function () {
-		var formObj = $("#board")
+		var formObj = $("#myBatisBoard")
 		
 		$("#btnModify").on("click", function () {
 			formObj.attr("action", "/board/modify")
@@ -30,7 +30,7 @@
 <body>
 	<h2>게시물 수정</h2>
 	
-	<form:form modelAttribute="board" action="modify">
+	<form:form modelAttribute="myBatisBoard" action="modify">
 		<form:hidden path="boardNo"/>
 		
 		<table>

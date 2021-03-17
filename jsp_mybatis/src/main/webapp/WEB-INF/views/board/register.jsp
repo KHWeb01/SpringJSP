@@ -13,7 +13,7 @@
 
 <script>
 	$(document).ready(function () {
-		var formObj = $("#board")
+		var formObj = $("#myBatisBoard")
 		
 		$("#btnRegister").on("click", function () {
 			formObj.attr("action", "/board/register")
@@ -30,7 +30,7 @@
 <body>
 	<h2>게시글 쓰기</h2>
 	
-	<form:form modelAttribute="board" action="register">
+	<form:form modelAttribute="myBatisBoard" action="register">
 		<table>
 			<tr>
 				<td>제목</td>
