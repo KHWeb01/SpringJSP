@@ -1,17 +1,19 @@
 package com.example.demo.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Member {
 	
 	private int userNo;
 	private String userId;
 	private String userPw;
-	private String userName;
+	private String userEmail;
+	private String userPhoneNum;
 	private LocalDateTime regDate;
 	
 	// 필요에 따라 권한 설정
-	
+	private List<MemberAuth> authList;
 	
 	// 매서드
 	public int getUserNo() {
@@ -32,11 +34,17 @@ public class Member {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	public String getUserPhoneNum() {
+		return userPhoneNum;
+	}
+	public void setUserPhoneNum(String userPhoneNum) {
+		this.userPhoneNum = userPhoneNum;
 	}
 	public LocalDateTime getRegDate() {
 		return regDate;
@@ -44,10 +52,16 @@ public class Member {
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
+	public List<MemberAuth> getAuthList() {
+		return authList;
+	}
+	public void setAuthList(List<MemberAuth> authList) {
+		this.authList = authList;
+	}
 	
 	@Override
 	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", regDate=" + regDate + "]";
+		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userEmail=" + userEmail
+				+ ", userPhoneNum=" + userPhoneNum + ", regDate=" + regDate + ", authList=" + authList + "]";
 	}
 }

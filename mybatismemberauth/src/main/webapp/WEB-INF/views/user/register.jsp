@@ -8,6 +8,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+	$(document).ready(function () {
+		var formObj = $("#member")
+		
+		$("#btnRegister").on("click", function () {
+			formObj.attr("action", "/user/register")
+			formObj.attr("method", "post")
+			formObj.submit()
+		})
+	})
+</script>
+
 <body>
 	<h2>등록 페이지입니다!</h2>
 	
@@ -22,8 +37,12 @@
 				<td><form:input path="userPw"/></td>
 			</tr>
 			<tr>
-				<td>사용자 이름</td>
-				<td><form:input path="userName"/></td>
+				<td>사용자 이메일</td>
+				<td><form:input path="userEmail"/></td>
+			</tr>
+			<tr>
+				<td>사용자 휴대폰 번호</td>
+				<td><form:input path="userPhoneNum"/></td>
 			</tr>
 		</table>
 	</form:form>
