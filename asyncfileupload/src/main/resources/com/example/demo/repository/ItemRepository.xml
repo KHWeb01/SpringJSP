@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.demo.repository.ItemRepository">
+
+	<insert id="create">
+		insert into async_image_item ( item_id, item_name, price, description )
+		values ( async_image_item_seq.nextval, #{item_name}, #{price}, #{description} )
+	</insert>
+	
+	<select id="read">
+		select item_id, item_name, price, description from async_image_item
+		where item_id = #{itemId}
+	</select>
+	
+	<update id="update">
+		update async_image_item 
+		set item_name = #{itemName}, price = #{price}, description = #{description}
+		where item_id = #{itemId}
+	</update>
+	
+	<delete id="delete">
+		delete from async_image_item
+		where item_id = #{itemId}
+	</delete>
+
+	<select id="list" resultType="Item">
+		<![CDATA[
+			select item_id, item_name, price, description from async_image_item
+			where item_id > 0 order by item_id desc
+		]]>
+	</select>
+	
+	<select id="getPicture">
+	</select>
+	
+	<insert id="addAttach">
+	</insert>
+	
+	<select id="getAttach">
+	</select>
+	
+	<select id="deleteAttach">
+	</select>
+	
+	<insert id="replaceAttach">
+	</insert>
+</mapper>
