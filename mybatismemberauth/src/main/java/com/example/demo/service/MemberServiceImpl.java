@@ -30,7 +30,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		MemberAuth memberAuth = new MemberAuth();
 		
-		
 		memberAuth.setUserNo(service.getno());
 		memberAuth.setAuth("ROLE_USER");
 		

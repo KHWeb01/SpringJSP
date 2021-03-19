@@ -19,5 +19,9 @@
 	<select id="getno" resultType="Integer">
 		select max(member_no) from jspmember
 	</select>
+	
+	<select id="getno2" resultType="Integer">
+		select jspmember_seq.currval from daul
+	</select>
 
 </mapper>
