@@ -13,16 +13,117 @@
 
 <script>
 	$(document).ready(function () {
-		var formObj = $("#board")
+		var formObj = $("#item")
 		
 		$("#btnModify").on("click", function () {
-			formObj.attr("action", "/board/modify")
+			formObj.attr("action", "/item/modify")
 			formObj.attr("method", "post")
 			formObj.submit();
 		})
 		
 		$("#btnList").on("click", function () {
-			self.location = "/board/list"
+			self.location = "/item/list"
+		})
+		
+		$(".uploadedList").on("click", function () {
+			$(this).parent("div").remove();
+		})
+		
+		// 정규 표현식으로 *.jpg, *.gif, *.png, *.jpeg 파일중 하나 검출
+		function checkImageType (fileName) {
+			var pattern = /jpg|gif|png|jpeg/i
+			
+			return fileName.match(pattern)
+		}
+		
+		function getOriginalName (fileName) {
+			if (checkImageType (fileName)) {
+				return;
+			}
+			
+			var idx = fileName.indexOf("_") + 1;
+			
+			return fileName.substr(idx);
+		}
+		
+		function getThumbnailName (fileName) {
+			var front = fileName.substr(0, 12)
+			var end = fileName.substr(12)
+			
+			console.log("front: " + front)
+			console.log("end: " + end)
+			
+			return front + "s_" + end
+		}
+		
+		// 사진 추가 및 수정에 대한 고려가 필요
+		
+		$("#item").submit(function(event) {
+			event.preventDefault()
+			
+			var that = $(this)
+			
+			var str = ""
+			
+			$(".uploadedList a").each(function(idx) {
+				var value = $(this).attr("href")
+				
+				console.log('value: ' + value)
+				
+				value = value.substr(27);
+				
+				console.log('value: ' + value)
+				
+				str += "<input type='hidden' name='files[" + idx + 
+					"]' value = '" + value + "'>";
+			})
+			
+			console.log("str: " + str)
+			
+			that.append(str)
+			
+			that.get(0).submit()
+		})
+		
+		$("#inputFile").on("change", function(event) {
+			console.log("change")
+			
+			var files = event.target.files
+			var file = files[0]
+			
+			console.log(file)
+			
+			var formData = new FormData();
+			
+			formData.append("file", file);
+			
+			$.ajax({
+				url: "/item/uploadAjax",
+				data: formData,
+				dataType: "text",
+				processData: false,
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					console.log(data)
+					
+					var str = ""
+					
+					if (checkImageType(data)) {
+						str = "<div><a href='/item/displayFile?fileName=" + 
+								data + "'>" + 
+								"<img src='/item/displayFile?fileName=" +
+								getThumbnailName(data) + "'>" +
+								"</a><span>x</span></div>"
+					} else {
+						str = "<div><a href='/item/displayFile?fileName=" +
+								data + "'>" + 
+								"</a><span>x</span></div>"
+					}
+					
+					$(".uploadedList").append(str);
+				}
+			})
 		})
 	})
 </script>

@@ -7,7 +7,7 @@
 
 	<insert id="create">
 		insert into async_image_item ( item_id, item_name, price, description )
-		values ( async_image_item_seq.nextval, #{item_name}, #{price}, #{description} )
+		values ( async_image_item_seq.nextval, #{itemName}, #{price}, #{description} )
 	</insert>
 	
 	<select id="read">
@@ -37,9 +37,15 @@
 	</select>
 	
 	<insert id="addAttach">
+		insert into item_attach (fullname, item_id) 
+		<!-- values (#{fullName}, LAST_INSERT_ID()) -->
+		values (#{fullName}, item_attach_seq.nextval)
 	</insert>
 	
 	<select id="getAttach">
+		select fullname from item_attach
+		where item_id = #{itemId}
+		order by regdate
 	</select>
 	
 	<select id="deleteAttach">

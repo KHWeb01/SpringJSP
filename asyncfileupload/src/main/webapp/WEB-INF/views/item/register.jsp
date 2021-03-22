@@ -36,6 +36,16 @@
 			return fileName.match(pattern)
 		}
 		
+		function getOriginalName (fileName) {
+			if (checkImageType (fileName)) {
+				return;
+			}
+			
+			var idx = fileName.indexOf("_") + 1;
+			
+			return fileName.substr(idx);
+		}
+		
 		function getThumbnailName (fileName) {
 			var front = fileName.substr(0, 12)
 			var end = fileName.substr(12)
@@ -45,6 +55,33 @@
 			
 			return front + "s_" + end
 		}
+		
+		$("#item").submit(function(event) {
+			event.preventDefault()
+			
+			var that = $(this)
+			
+			var str = ""
+			
+			$(".uploadedList a").each(function(idx) {
+				var value = $(this).attr("href")
+				
+				console.log('value: ' + value)
+				
+				value = value.substr(27);
+				
+				console.log('value: ' + value)
+				
+				str += "<input type='hidden' name='files[" + idx + 
+					"]' value = '" + value + "'>";
+			})
+			
+			console.log("str: " + str)
+			
+			that.append(str)
+			
+			that.get(0).submit()
+		})
 		
 		$("#inputFile").on("change", function(event) {
 			console.log("change")
@@ -78,7 +115,7 @@
 								"</a><span>x</span></div>"
 					} else {
 						str = "<div><a href='/item/displayFile?fileName=" +
-								data + "'>" + /* ToDo */
+								data + "'>" + 
 								"</a><span>x</span></div>"
 					}
 					

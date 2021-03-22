@@ -19,4 +19,50 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		return repository.list();
 	}
+
+	@Override
+	public void regist(Item item) throws Exception {
+		// TODO Auto-generated method stub
+		repository.create(item);
+		
+		String[] files = item.getFiles();
+		
+		if (files == null) {
+			return;
+		}
+		
+		for (String fileName : files) {
+			repository.addAttach(fileName);
+		}
+	}
+
+	@Override
+	public Item read(Integer itemId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void modify(Item item) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Integer itemId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getPicture(Integer itemId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAttach(Integer itemId) throws Exception {
+		// TODO Auto-generated method stub
+		return repository.getAttach(itemId);
+	}
 }
