@@ -22,4 +22,6 @@ public interface ItemRepository {
 	public List<String> getAttach(Integer itemId) throws Exception;
 	
 	public Integer getItemId() throws Exception;
+
+	public void delete(Integer itemId) throws Exception;
 }

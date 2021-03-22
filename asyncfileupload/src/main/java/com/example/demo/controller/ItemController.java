@@ -155,4 +155,22 @@ public class ItemController {
 		
 		return "item/success";
 	}
+	
+	@GetMapping("/remove")
+	public String removeForm(Integer itemId, Model model) throws Exception {
+		Item item = itemService.read(itemId);
+		
+		model.addAttribute(item);
+		
+		return "item/remove";
+	}
+	
+	@PostMapping("/remove")
+	public String remove(Item item, Model model) throws Exception {
+		itemService.remove(item.getItemId());
+		
+		model.addAttribute("msg", "상품 삭제가 성공적으로 완료되었습니다.");
+		
+		return "item/success";
+	}
 }

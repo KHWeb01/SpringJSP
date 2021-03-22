@@ -60,7 +60,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void remove(Integer itemId) throws Exception {
 		// TODO Auto-generated method stub
-		
+		repository.delete(itemId);
 	}
 
 	@Override
