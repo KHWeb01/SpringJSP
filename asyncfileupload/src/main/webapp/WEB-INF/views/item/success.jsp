@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<h2>${msg}</h2>
-		<a href="/board/list">게시글 보기</a>
+		<a href="/item/list">상품 보기</a>
 	</div>
 </body>
 </html>
