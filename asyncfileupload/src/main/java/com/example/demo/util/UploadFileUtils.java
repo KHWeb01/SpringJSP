@@ -1,10 +1,14 @@
 package com.example.demo.util;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
+
+import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
@@ -35,8 +39,30 @@ public class UploadFileUtils {
 				savedPath.replace(File.separatorChar, '/') + '/' + savedName;
 		
 		/* Todo: Image 처리 */
+		if (MediaUtils.getMediaType(formatName) != null) {
+			makeThumbnail(uploadPath, savedPath, savedName);
+		}
 		
 		return uploadedFileName;
+	}
+	
+	public static void makeThumbnail(
+			String uploadPath, String path, String fileName) throws Exception {
+		
+		BufferedImage sourceImg = 
+				ImageIO.read(new File(uploadPath + path, fileName));
+		
+		BufferedImage destImg = 
+				Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, 
+						Scalr.Mode.FIT_TO_HEIGHT, 100);
+		
+		String thumbnailName = 
+				uploadPath + path + File.separator + "s_" + fileName;
+		
+		File newFile = new File(thumbnailName);
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+		
+		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 	}
 
 	public static String calcPath (String uploadPath) {
