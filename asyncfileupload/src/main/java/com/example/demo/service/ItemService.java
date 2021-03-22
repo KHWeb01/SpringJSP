@@ -19,4 +19,6 @@ public interface ItemService {
 	public String getPicture(Integer itemId) throws Exception;
 	
 	public List<String> getAttach(Integer itemId) throws Exception;
+	
+	public Integer getItemId() throws Exception;
 }

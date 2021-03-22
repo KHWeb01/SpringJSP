@@ -16,8 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Item;
@@ -118,5 +120,39 @@ public class ItemController {
 		}
 		
 		return entity;
+	}
+	
+	@GetMapping("/modify")
+	public String modifyForm(Integer itemId, Model model) throws Exception {
+		
+		Item item = itemService.read(itemId);
+		
+		model.addAttribute(item);
+		
+		return "item/modify";
+	}
+	
+	@GetMapping("/getAttach/{itemId}")
+	@ResponseBody
+	public List<String> getAttach(@PathVariable("itemId") Integer itemId) 
+			throws Exception {
+		
+		return itemService.getAttach(itemId);
+	}
+	
+	@PostMapping("/modify")
+	public String modify(Item item, Model model) throws Exception {
+		
+		String[] files = item.getFiles();
+		
+		for (int i = 0; i < files.length; i++) {
+			log.info("files[i] = " + files[i]);
+		}
+		
+		itemService.modify(item);
+		
+		model.addAttribute("msg", "성공적으로 상품을 수정하였습니다.");
+		
+		return "item/success";
 	}
 }

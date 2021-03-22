@@ -25,7 +25,7 @@
 			self.location = "/item/list"
 		})
 		
-		$(".uploadedList").on("click", function () {
+		$(".uploadedList").on("click", "span", function () {
 			$(this).parent("div").remove();
 		})
 		

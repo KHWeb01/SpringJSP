@@ -25,7 +25,7 @@
 			self.location = "/item/list"
 		})
 		
-		$(".uploadedList").on("click", function () {
+		$(".uploadedList").on("click", "span", function () {
 			$(this).parent("div").remove();
 		})
 		
@@ -57,6 +57,29 @@
 		}
 		
 		// 사진 추가 및 수정에 대한 고려가 필요
+		var itemId = ${item.itemId}
+		
+		$.getJSON("/item/getAttach/" + itemId, function (list) {
+			$(list).each(function () {
+				var data = this
+				
+				var str = ""
+				
+				if (checkImageType(data)) {
+					str = "<div><a href='/item/displayFile?fileName=" + 
+							data + "'>" +
+							"<img src='/item/displayFile?fileName=" + 
+							getThumbnailName(data) + "'/>" +
+							"</a><span>x</span></div>"
+				} else {
+					str = "<div><a href='/item/displayFile?fileName=" + 
+							data + "'>" + getOriginalName(data) +
+							"</a><span>x</span></div>"
+				}
+				
+				$(".uploadedList").append(str)
+			})
+		})
 		
 		$("#item").submit(function(event) {
 			event.preventDefault()
@@ -131,21 +154,29 @@
 <body>
 	<h2>게시물 수정</h2>
 	
-	<form:form modelAttribute="board" action="modify">
-		<form:hidden path="boardNo"/>
+	<form:form modelAttribute="item" action="modify" 
+				enctype="multipart/form-data">
+		<form:hidden path="itemId"/>
 		
 		<table>
 			<tr>
-				<td>제목</td>
-				<td><form:input path="title"/></td>
+				<td>상품명</td>
+				<td><form:input path="itemName"/></td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td><form:input path="writer" readonly="true"/></td>
+				<td>가격</td>
+				<td><form:input path="price"/>&nbsp;원</td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td><form:input path="content"/></td>
+				<td>파일</td>
+				<td>
+					<input type="file" id="inputFile">
+					<div class="uploadedList"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>상품 설명</td>
+				<td><form:textarea path="description"/></td>
 			</tr>
 		</table>
 	</form:form>

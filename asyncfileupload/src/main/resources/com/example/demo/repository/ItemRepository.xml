@@ -10,7 +10,7 @@
 		values ( async_image_item_seq.nextval, #{itemName}, #{price}, #{description} )
 	</insert>
 	
-	<select id="read">
+	<select id="read" resultType="Item">
 		select item_id, item_name, price, description from async_image_item
 		where item_id = #{itemId}
 	</select>
@@ -39,10 +39,10 @@
 	<insert id="addAttach">
 		insert into item_attach (fullname, item_id) 
 		<!-- values (#{fullName}, LAST_INSERT_ID()) -->
-		values (#{fullName}, item_attach_seq.nextval)
+		values (#{fullName}, #{itemJoinId})
 	</insert>
 	
-	<select id="getAttach">
+	<select id="getAttach" resultType="string">
 		select fullname from item_attach
 		where item_id = #{itemId}
 		order by regdate
@@ -53,4 +53,8 @@
 	
 	<insert id="replaceAttach">
 	</insert>
+	
+	<select id="getItemId" resultType="Integer">
+		select async_image_item_seq.currval from dual
+	</select>
 </mapper>
